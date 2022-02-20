@@ -1,24 +1,25 @@
 <nav class="navbar navbar-expand-lg bg-warning navbar-light fixed-top shadow-lg">
     <div class="container">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavbarElement" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#NavbarElement"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-            <div class="collapse navbar-collapse" id="NavbarElement">
-                <ul class="navbar-nav me-auto mb-2 mb-xl-0">
-                    <li class="nav-item btn-sm btn-light">
-                        <a href="#" class="nav-link menu-item text-primary"><i
+        <div class="collapse navbar-collapse" id="NavbarElement">
+            <ul class="navbar-nav me-auto mb-2 mb-xl-0">
+                <li class="nav-item btn-sm btn-light">
+                    <a href="{% url 'recipes:home'%}" class="nav-link menu-item text-primary"><i
                             class="far fa-dot-circle"></i> Início</a>
-                    </li>
-                    <li class="nav-item btn-sm btn-light">
-                        <a href="#" class="nav-link menu-item text-danger"><i
-                            class="far fa-dot-circle"></i> Categorias</a>
-                    </li>
-                </ul>
-                <form class="d-flex" method="post" action="#">
-                    <input class="form-control me-2" type="search" placeholder="Procurar..." aria-label="Search" name="searched">
-                    <button class="btn btn-light" type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
+                </li>
+                <li class="nav-item btn-sm btn-light">
+                    <a href="#" class="nav-link menu-item text-danger"><i class="far fa-dot-circle"></i> Categorias</a>
+                </li>
+            </ul>
+            <form class="d-flex" method="post" action="#">
+                <input class="form-control me-2" type="search" placeholder="Procurar..." aria-label="Search"
+                    name="searched">
+                <button class="btn btn-light" type="submit"><i class="fas fa-search"></i></button>
+            </form>
         </div>
+    </div>
     </div>
 </nav>

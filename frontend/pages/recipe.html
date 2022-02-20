@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>
+    {{recipe.title}} | Recipes
+</title>
+{% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="card-body">
+        <img class="card-img-top" src="{{ recipe.cover.url }}">
+        <h1 class="display-1 text-center">{{ recipe.title }}</h1>
+        <h5 class="text-center mb-2"><i class="fas fa-clock"></i>{{ recipe.created_at }},
+            <i class="fas fa-at"></i>{{ recipe.author}}, {% if recipe.category is not None %}
+            <a class="text-decoration-none text-danger" href="{% url 'recipes:category' recipe.category.id %}"><i
+                    class="fas fa-hashtag"></i>{{recipe.category }}</a>
+            {% else %}
+            <a href="#" type="button" class="btn btn-sm btn-warning"><i class="fas fa-utensils"></i>S/Categoria
+            </a>
+            {% endif %}
+
+        </h5>
+        {% if recipe.preparation_steps_is_html%}
+        {{ recipe.preparation_steps|safe }}
+        {% else %}
+        <p class="card-text">{{ recipe.preparation_steps }}</p>
+        {% endif %}
+        <a href="{% url 'recipes:home' %}" class="text-danger"><i class="fas fa-undo-alt"></i>Voltar</a>
+    </div>
+</div>
+{% endblock content %}

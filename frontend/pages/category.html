@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
+{% block title %}
+<title>
+    Categorias | Recipes
+</title>
+{% endblock title %}
 {% block content %}
 <div class="album py-2 bg-light">
     <div class="container">
-        {% if recipes%}
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for recipe in recipes %}
+            {% for recipe in category %}
             <div class="col">
                 <div class="card shadow-sm">
                     <img src="{{ recipe.cover.url }}" alt="" srcset="">
@@ -16,15 +20,9 @@
                                     class="fas fa-clock "></i>{{recipe.praparation_time}}
                                 {{ recipe.preparation_time_unit}}
                             </button>
-                            {% if recipe.category is not None %}
                             <a href="{% url 'recipes:category' recipe.category.id %}" type="button"
                                 class="btn btn-sm btn-warning"><i class="fas fa-utensils"></i>{{ recipe.category }}
                             </a>
-                            {% else %}
-                            <a href="#" type="button" class="btn btn-sm btn-warning"><i
-                                    class="fas fa-utensils"></i>S/Categoria
-                            </a>
-                            {% endif %}
                             <button class="btn btn-sm btn-warning"><i
                                     class="fas fa-user-friends"></i>{{ recipe.servings }}
                                 {{ recipe.servings_unit}}
@@ -43,9 +41,6 @@
             </div>
             {% endfor %}
         </div>
-        {% else %}
-        <h1 class="display-1">Ainda não temos nenhuma publicação aqui!</h1>
-        {% endif %}
     </div>
 </div>
 {% endblock content %}

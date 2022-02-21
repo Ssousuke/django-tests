@@ -6,11 +6,11 @@ from ..models import Category, Recipe, User
 
 class RecipeViewsTest(TestCase):
     # Checam se a identidade em memoria das variaveis são iguais
-    def test_recipe_home_views_function_is_corret(self):
+    def test_recipe_home_views_function_is_correct(self):
         view_home = resolve('/')
         self.assertIs(view_home.func, views.home)
 
-    def test_recipe_category_views_function_is_corret(self):
+    def test_recipe_category_views_function_is_correct(self):
         view_category = resolve(reverse('recipes:category', kwargs={'id': 1}))
         self.assertIs(view_category.func, views.category)
 
@@ -66,7 +66,7 @@ class RecipeViewsTest(TestCase):
         response = self.client.get(reverse('recipes:recipe', kwargs={'id': 10000}))
         self.assertEqual(response.status_code, 404)
 
-    # Testa os templates retornado
+    # Testa os templates retornado pela home
     def test_recipe_home_view_load_correct_template(self):
         """
         Testa se o template passado é o mesmo que está sendo
@@ -75,7 +75,7 @@ class RecipeViewsTest(TestCase):
         response = self.client.get(reverse('recipes:home'))
         self.assertTemplateUsed(response, 'pages/index.html')
 
-    # Testa o html
+    # Testa o html da Home em casos de 404
     def test_recipe_home_template_shows_no_recipe_found_if_no_recipes(self):
         response = self.client.get(reverse('recipes:home'))
         self.assertIn(

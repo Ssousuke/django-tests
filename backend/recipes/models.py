@@ -22,7 +22,7 @@ class Recipe(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     slug = models.SlugField()
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to='recipes/covers/')
+    cover = models.ImageField(upload_to='recipes/covers/', blank=True)
     category = models.ForeignKey(
         Category, on_delete=models.SET_NULL, null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)

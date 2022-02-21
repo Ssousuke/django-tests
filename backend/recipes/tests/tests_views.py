@@ -40,21 +40,24 @@ class RecipeViewsTest(TestCase):
             email='username@gmail.com',
         )
         recipe = Recipe.objects.create(
+            category=category,
+            author=author,
             title='Olá Mundo!',
-            description='Olá Mundo!',
+            description='Olá Mundo, Descrição!',
+            slug='ola-mundo',
             preparation_time=2,
+            cover='django-test.png',
             preparation_time_unit='Minutos',
             servings=2,
             servings_unit='Porções',
             preparation_steps='Recipes prepatarion steps',
             preparation_steps_is_html=False,
             is_published=True,
-            category=category,
-            author=author,
         )
         response = self.client.get(reverse('recipes:home'))
         content = response.content.decode('utf-8')
         self.assertIn('Olá Mundo!', content)
+        self.assertIn('Olá Mundo, Descrição!', content)
 
     # Testa se o category retorna 404
     def test_recipe_category_view_returns_status_code_404(self):

@@ -11,5 +11,16 @@ Existem três tipos de testes
 Em python exitem algumas ferarmentas que auxiliam na criação de testes
 - Pytest
 - Unittest
+- django.TestCase (É uma "extensão" do Unittest)
 
-#### continua.. 
+##  django.test.TestCase
+É a principal ferramenta usada neste projeto. O TestCase do Django vem com um *client* que simula um navegador web, essa client permite que vc interaga com 
+seu teste da mesma forma que um usuário iria fazer usando um navegador, podendo fazer POST e GET.
+
+## Máterial de Apoio
+#### _*Todo o conteúdo aplicado neste projeto foi retirado das fontes abaixo:*_
+- Curso de Django Web Framework (Luiz Otavio)
+- Testing in Django (Django Project)
+- Django Web Framework (MDN)
+
+#### Continua...

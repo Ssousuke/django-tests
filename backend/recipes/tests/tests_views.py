@@ -1,10 +1,12 @@
-from django.test import TestCase
 from django.urls import resolve, reverse
 from .. import views
-from ..models import Category, Recipe, User
+from .test_recipe_base import RecipeTestBase
 
 
-class RecipeViewsTest(TestCase):
+class RecipeViewsTest(RecipeTestBase):
+    def tearDown(self) -> None:
+        return super().tearDown()
+
     # Checam se a identidade em memoria das variaveis são iguais
     def test_recipe_home_views_function_is_correct(self):
         view_home = resolve('/')
@@ -31,32 +33,13 @@ class RecipeViewsTest(TestCase):
 
     # Fixtures
     def test_recipe_home_template_loads_recipe(self):
-        category = Category.objects.create(name='Salgados')
-        author = User.objects.create_user(
-            first_name='user',
-            last_name='name',
-            username='username',
-            password='123456',
-            email='username@gmail.com',
-        )
-        recipe = Recipe.objects.create(
-            category=category,
-            author=author,
-            title='Olá Mundo!',
-            description='Olá Mundo, Descrição!',
-            slug='ola-mundo',
-            preparation_time=2,
-            cover='django-test.png',
-            preparation_time_unit='Minutos',
-            servings=2,
-            servings_unit='Porções',
-            preparation_steps='Recipes prepatarion steps',
-            preparation_steps_is_html=False,
-            is_published=True,
-        )
+        # Cria uma receita para esse teste
+        self.make_recipe()
         response = self.client.get(reverse('recipes:home'))
         content = response.content.decode('utf-8')
+        # Verifica se o titulo existe no template
         self.assertIn('Olá Mundo!', content)
+        # Verifica se a descrição existe no template
         self.assertIn('Olá Mundo, Descrição!', content)
 
     # Testa se o category retorna 404
@@ -80,6 +63,7 @@ class RecipeViewsTest(TestCase):
 
     # Testa o html da Home em casos de 404
     def test_recipe_home_template_shows_no_recipe_found_if_no_recipes(self):
+        # Para que esse teste passe é preciso que não exista receitas criadas
         response = self.client.get(reverse('recipes:home'))
         self.assertIn(
             '<h1 class="display-1">Ainda não temos nenhuma publicação aqui!</h1>',
